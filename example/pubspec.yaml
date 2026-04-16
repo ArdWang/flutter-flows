@@ -1,0 +1,23 @@
+name: flows_example
+description: "Flows Framework Example App - Demonstrates state management, dependency injection, and routing."
+publish_to: 'none'
+version: 0.0.1+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+  flutter: '>=3.3.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_flows:
+    path: ../
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true

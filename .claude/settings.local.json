@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"E:/Project/Github/flutter/flutter-flows/flows/lib/src/core\")",
+      "Bash(mkdir -p \"E:/Project/Github/flutter/flutter-flows/flows/lib/src/rx\")",
+      "Bash(mkdir -p \"E:/Project/Github/flutter/flutter-flows/flows/lib/src/navigation\")",
+      "Bash(mkdir -p \"E:/Project/Github/flutter/flutter-flows/flows/lib/src/state_manager\")",
+      "Bash(mkdir -p \"E:/Project/Github/flutter/flutter-flows/flows/example\")",
+      "Bash(fvm flutter *)",
+      "Bash(flutter analyze *)",
+      "Bash(flutter test *)",
+      "Bash(flutter create *)"
+    ]
+  }
+}
