@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.1] - 2026-04-17
 
 ### Added
-- Initial release of Flutter Flows framework
+- Initial release of LiteFlows framework
 - **Dependency Injection** system with `Flow.put`, `Flow.find`, `Flow.isRegistered`, and `Flow.remove`
 - **Reactive State Management** with Rx types:
   - `Rx<T>`, `Rxn<T>` for generic reactive wrappers

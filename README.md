@@ -1,6 +1,6 @@
 # Flows
 
-[![Pub Version](https://img.shields.io/pub/v/flutter_flows.svg)](https://pub.dev/packages/flutter_flows)
+[![Pub Version](https://img.shields.io/pub/v/liteflows.svg)](https://pub.dev/packages/liteflows)
 [![Flutter Version](https://img.shields.io/badge/Flutter-%3E%3D3.3.0-blue.svg)](https://flutter.dev)
 [![Dart Version](https://img.shields.io/badge/Dart-%3E%3D3.2.3-blue.svg)](https://dart.dev)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
@@ -44,7 +44,7 @@ Add this to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_flows: ^0.0.1
+  liteflows: ^0.0.1
 ```
 
 Then run:
@@ -65,7 +65,7 @@ Here's a complete example of a counter app:
 
 ```dart
 import 'package:flutter/material.dart';
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/liteflows.dart';
 
 // 1. Define State
 class CounterState {

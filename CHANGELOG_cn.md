@@ -8,7 +8,7 @@
 ## [0.0.1] - 2026-04-17
 
 ### 新增
-- Flutter Flows 框架首次发布
+- LiteFlows 框架首次发布
 - **依赖注入** 系统，支持 `Flow.put`、`Flow.find`、`Flow.isRegistered` 和 `Flow.remove`
 - **响应式状态管理**，支持 Rx 类型：
   - `Rx<T>`、`Rxn<T>` 通用响应式包装器
