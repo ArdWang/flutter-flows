@@ -4,12 +4,20 @@ library;
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter_flows/flows.dart';
 
+import '../utils/pretty_print.dart';
+
 class CounterController extends FlowController {
   final count = 0.obs;
 
   void increment() => count.value++;
   void decrement() => count.value--;
   void reset() => count.value = 0;
+
+  @override
+  void onInit() {
+    super.onInit();
+    PrettyLogger.info('CounterController initialized');
+  }
 }
 
 class CounterPage extends StatelessWidget {
@@ -17,6 +25,8 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    PrettyLogger.debug('CounterPage loaded');
+
     if (!Flow.isRegistered<CounterController>()) {
       Flow.put(CounterController());
     }
@@ -24,7 +34,7 @@ class CounterPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Counter Page'),
+        title: const Text('Counter Page - Flows Demo'),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: Center(
@@ -34,13 +44,20 @@ class CounterPage extends StatelessWidget {
             const Icon(Icons.trending_up, size: 64),
             const SizedBox(height: 24),
 
-            Flx(() => Text(
-              '${controller.count.value}',
-              style: const TextStyle(
-                fontSize: 72,
-                fontWeight: FontWeight.bold,
-              ),
-            )),
+            Flx(() {
+              final currentValue = controller.count.value;
+              // Log when count changes
+              if (currentValue != 0) {
+                PrettyLogger.data('Count updated', currentValue);
+              }
+              return Text(
+                '$currentValue',
+                style: const TextStyle(
+                  fontSize: 72,
+                  fontWeight: FontWeight.bold,
+                ),
+              );
+            }),
 
             const SizedBox(height: 48),
 
@@ -48,7 +65,10 @@ class CounterPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 FloatingActionButton.extended(
-                  onPressed: controller.decrement,
+                  onPressed: () {
+                    PrettyLogger.info('Counter decremented');
+                    controller.decrement();
+                  },
                   icon: const Icon(Icons.remove),
                   label: const Text('Decrement'),
                   backgroundColor: Colors.red,
@@ -56,7 +76,10 @@ class CounterPage extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 FloatingActionButton.extended(
-                  onPressed: controller.increment,
+                  onPressed: () {
+                    PrettyLogger.info('Counter incremented');
+                    controller.increment();
+                  },
                   icon: const Icon(Icons.add),
                   label: const Text('Increment'),
                   backgroundColor: Colors.green,
@@ -66,13 +89,19 @@ class CounterPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             TextButton(
-              onPressed: controller.reset,
+              onPressed: () {
+                PrettyLogger.info('Counter reset');
+                controller.reset();
+              },
               child: const Text('Reset Counter'),
             ),
 
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () => Flow.back(),
+              onPressed: () {
+                PrettyLogger.info('Navigating back from Counter Page');
+                Flow.back();
+              },
               child: const Text('Go Back'),
             ),
           ],

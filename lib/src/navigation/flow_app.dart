@@ -7,7 +7,7 @@ import '../core/flow.dart';
 import 'flow_page.dart';
 
 /// FlowMaterialApp - Material app with Flow routing support
-class FlowMaterialApp extends StatelessWidget {
+class FlowMaterialApp extends StatefulWidget {
   /// The home widget
   final Widget? home;
 
@@ -23,7 +23,7 @@ class FlowMaterialApp extends StatelessWidget {
   /// Dark theme data
   final ThemeData? darkTheme;
 
-  /// Theme mode
+  /// Theme mode - can be a reactive value
   final ThemeMode? themeMode;
 
   /// Debug banner enabled
@@ -41,6 +41,9 @@ class FlowMaterialApp extends StatelessWidget {
   /// Builder for wrapping the entire app
   final Widget Function(BuildContext, Widget?)? builder;
 
+  /// App title for accessibility
+  final String? title;
+
   const FlowMaterialApp({
     super.key,
     this.home,
@@ -54,44 +57,70 @@ class FlowMaterialApp extends StatelessWidget {
     this.unknownRoute,
     this.navigatorObservers,
     this.builder,
+    this.title,
   });
 
   @override
+  State<FlowMaterialApp> createState() => _FlowMaterialAppState();
+}
+
+class _FlowMaterialAppState extends State<FlowMaterialApp> {
+  ThemeMode _currentThemeMode = ThemeMode.system;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentThemeMode = widget.themeMode ?? ThemeMode.system;
+  }
+
+  @override
+  void didUpdateWidget(FlowMaterialApp oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.themeMode != oldWidget.themeMode) {
+      setState(() {
+        _currentThemeMode = widget.themeMode ?? ThemeMode.system;
+      });
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // Build page routes
+    // Build page routes - don't use 'routes' property as it doesn't pass arguments
     final Map<String, WidgetBuilder> builtRoutes = {};
-    if (pages != null) {
-      for (final page in pages!) {
+    if (widget.pages != null) {
+      for (final page in widget.pages!) {
         builtRoutes[page.name] = (_) => page.page();
       }
     }
-    if (routes != null) {
-      builtRoutes.addAll(routes!);
+    if (widget.routes != null) {
+      builtRoutes.addAll(widget.routes!);
     }
 
     return MaterialApp(
-      key: key,
-      home: home ?? (pages != null && pages!.isNotEmpty ? pages!.first.page() : null),
-      initialRoute: initialRoute,
-      routes: builtRoutes,
-      theme: theme,
-      darkTheme: darkTheme,
-      themeMode: themeMode,
-      debugShowCheckedModeBanner: debugShowCheckedModeBanner,
+      key: widget.key,
+      title: widget.title,
+      home: widget.home ?? (widget.pages != null && widget.pages!.isNotEmpty ? widget.pages!.first.page() : null),
+      initialRoute: widget.initialRoute,
+      // Don't use 'routes' property - it doesn't pass arguments correctly
+      // Use onGenerateRoute instead
+      theme: widget.theme,
+      darkTheme: widget.darkTheme,
+      themeMode: _currentThemeMode,
+      debugShowCheckedModeBanner: widget.debugShowCheckedModeBanner,
       navigatorKey: Flow.navigatorKey,
-      navigatorObservers: navigatorObservers ?? [],
-      builder: builder,
+      navigatorObservers: widget.navigatorObservers ?? [],
+      builder: widget.builder,
       onGenerateRoute: (settings) {
-        if (pages != null) {
-          for (final page in pages!) {
-            if (page.name == settings.name) {
-              return page.createRoute();
-            }
-          }
-        }
-        if (unknownRoute != null) {
+        // Pass settings (including arguments) to MaterialPageRoute
+        if (builtRoutes.containsKey(settings.name)) {
           return MaterialPageRoute(
-            builder: (_) => unknownRoute!(Flow.navigator!.context),
+            builder: builtRoutes[settings.name]!,
+            settings: settings, // Pass settings with arguments
+          );
+        }
+        if (widget.unknownRoute != null) {
+          return MaterialPageRoute(
+            builder: (_) => widget.unknownRoute!(Flow.navigator!.context),
             settings: settings,
           );
         }
