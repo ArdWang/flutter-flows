@@ -3,7 +3,7 @@
 /// This demonstrates the Logic/State/View separation pattern
 library;
 
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 
 /// User data model for testing object passing and editing
 class UserData {

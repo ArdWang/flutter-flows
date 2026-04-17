@@ -44,7 +44,7 @@ Add this to your `pubspec.yaml`:
 dependencies:
   flutter:
     sdk: flutter
-  liteflows: ^0.0.1
+  liteflows: ^0.0.2
 ```
 
 Then run:
@@ -56,7 +56,7 @@ flutter pub get
 Import the package:
 
 ```dart
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 ```
 
 ## Quick Start

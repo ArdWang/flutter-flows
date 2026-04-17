@@ -3,7 +3,7 @@
 /// This demonstrates the Controller pattern usage
 library;
 
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 
 class HomeController extends FlowController {
   // Reactive variables

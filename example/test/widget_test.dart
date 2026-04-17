@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart' hide Flow;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 
 void main() {
   testWidgets('Flx widget builds', (WidgetTester tester) async {

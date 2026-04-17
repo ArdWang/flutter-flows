@@ -44,7 +44,7 @@
 dependencies:
   flutter:
     sdk: flutter
-  liteflows: ^0.0.1
+  liteflows: ^0.0.2
 ```
 
 然后运行：
@@ -56,7 +56,7 @@ flutter pub get
 导入包：
 
 ```dart
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 ```
 
 ## 快速开始

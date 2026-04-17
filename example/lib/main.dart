@@ -12,7 +12,7 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 
 import 'pages/home_page.dart';
 import 'pages/counter_page.dart';

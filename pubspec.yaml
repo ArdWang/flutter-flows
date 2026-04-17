@@ -1,6 +1,6 @@
 name: liteflows
 description: "A light, modern and powerful Flutter framework combining state management, dependency injection, and route management - inspired by GetX but with a cleaner API."
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/flutter-flows/flutter-flows
 repository: https://github.com/flutter-flows/flutter-flows
 

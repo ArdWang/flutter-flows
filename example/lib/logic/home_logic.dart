@@ -4,7 +4,7 @@
 library;
 
 import 'package:flutter/material.dart' hide Flow;
-import 'package:flutter_flows/flows.dart';
+import 'package:liteflows/flows.dart';
 
 import '../state/home_state.dart';
 import '../main.dart';
