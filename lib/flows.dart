@@ -26,3 +26,5 @@ export 'src/state_manager/flx.dart';
 // Navigation
 export 'src/navigation/flow_page.dart';
 export 'src/navigation/flow_app.dart';
+export 'src/navigation/snackbar.dart';
+export 'src/navigation/dialog.dart';

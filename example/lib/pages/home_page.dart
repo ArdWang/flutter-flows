@@ -173,10 +173,55 @@ class HomePage extends StatelessWidget {
               onPressed: () => Flow.toNamed('/perf-test'),
               child: const Text('Performance Test'),
             ),
+
+            const SizedBox(height: 8),
+            // Button 6: New Features Test
+            ElevatedButton.icon(
+              onPressed: () {
+                PrettyLogger.info('Navigating to New Features Test');
+                Flow.toNamed('/new-features');
+              },
+              icon: const Icon(Icons.auto_awesome, color: Colors.white),
+              label: const Text(
+                '✨ New Features Test',
+                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.success,
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // New Features Test Section
+            const Divider(),
+            const SizedBox(height: 8),
+            const Text(
+              '🆕 New Features Demo',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 8),
+
+            ElevatedButton.icon(
+              onPressed: () => Flow.toNamed('/new-features'),
+              icon: const Icon(Icons.auto_awesome),
+              label: const Text(
+                '✨ New Features Test',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.success,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+              ),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'home_fab',
         onPressed: () {
           final controller = TextEditingController();
           showDialog(
@@ -209,7 +254,6 @@ class HomePage extends StatelessWidget {
             ),
           );
         },
-        heroTag: 'home_fab',
         tooltip: 'Change Name',
         child: const Icon(Icons.edit),
       ),

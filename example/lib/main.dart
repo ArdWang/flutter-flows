@@ -11,13 +11,14 @@
 /// Supports: Android, iOS, Web, Windows, macOS, Linux
 library;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Flow;
 import 'package:liteflows/flows.dart';
 
 import 'pages/home_page.dart';
 import 'pages/counter_page.dart';
 import 'pages/detail_page.dart';
 import 'pages/perf_test_page.dart';
+import 'pages/new_features_page.dart';
 import 'utils/pretty_print.dart';
 
 /// App theme colors - Matches the flows.png icon color (cyan/teal)
@@ -184,6 +185,7 @@ class _FlowsExampleAppState extends State<FlowsExampleApp> {
             FlowPage(name: '/counter', page: () => const CounterPage()),
             FlowPage(name: '/detail', page: () => const DetailPage()),
             FlowPage(name: '/perf-test', page: () => const PerfTestPage()),
+            FlowPage(name: '/new-features', page: () => const NewFeaturesPage()),
           ],
           initialRoute: '/home',
         );
